@@ -229,7 +229,7 @@
 <section id="rdv">
   <h2>Prendre rendez-vous en ligne</h2>
   <div style="min-width:320px;height:700px">
-    <iframe src="https://calendly.com/isotron44/30min"
+    <iframe src="https://calendly.com/isotron44/30min?locale=fr"
       width="100%" height="100%" frameborder="0"></iframe>
   </div>
 </section>
@@ -360,5 +360,6 @@
 
 </body>
 </html>
+
 
 
