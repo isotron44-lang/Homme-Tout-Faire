@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Votre Homme à Tout Faire – Île-de-France</title>
+<style>
+  :root{
+    --primary:#007bff;--success:#28a745;--dark:#333;--bg:#f9f9f9;--white:#fff;
+    --shadow:0 6px 18px rgba(0,0,0,.12);--radius:12px;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:Arial,Helvetica,sans-serif;line-height:1.6;background:var(--bg);scroll-behavior:smooth}
+  header{
+    background:url('test2.png') center/cover no-repeat;
+    color:#fff;text-align:center;padding:64px 20px;
+    position:relative
+  }
+  header::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,.35)}
+  .header-inner{position:relative;z-index:1;max-width:1000px;margin:auto}
+  header h1{margin:0 0 8px;font-size:2.2rem}
+  header p{margin:6px 0;font-size:1.05rem}
+  .btn{display:inline-block;padding:12px 18px;border:none;border-radius:10px;color:#fff;background:var(--primary);cursor:pointer;font-weight:bold}
+  .btn + .btn{margin-left:10px}
+  .btn.success{background:var(--success)}
+  .btn.dark{background:#1f2937}
+  .btn:hover{filter:brightness(.95)}
+  nav{position:sticky;top:0;z-index:10;background:#111;color:#fff;padding:10px}
+  nav .nav-inner{max-width:1100px;margin:auto;display:flex;gap:16px;justify-content:center}
+  nav a{color:#fff;text-decoration:none;font-weight:bold}
+  nav a:hover{text-decoration:underline}
+  section{max-width:1100px;margin:28px auto;background:var(--white);box-shadow:var(--shadow);border-radius:var(--radius);padding:28px}
+  h2{margin-top:0}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+  .card{background:#fff;border:1px solid #eee;border-radius:10px;padding:16px;box-shadow:0 2px 10px rgba(0,0,0,.06);text-align:center}
+  .card img{max-width:100%;border-radius:8px}
+  .center{text-align:center}
+  .map{margin-top:16px;border-radius:12px;overflow:hidden;border:1px solid #e5e7eb}
+  footer{max-width:1100px;margin:40px auto 60px;color:#555;text-align:center}
+  /* Modals */
+  .modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:1000;padding:18px}
+  .modal.open{display:block}
+  .modal-box{background:#fff;max-width:620px;margin:40px auto;padding:22px;border-radius:14px;box-shadow:var(--shadow);animation:pop .22s ease-out}
+  @keyframes pop{from{opacity:0;transform:translateY(-12px)}to{opacity:1;transform:translateY(0)}}
+  .modal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+  .modal-head h3{margin:0}
+  .close{background:transparent;border:none;font-size:26px;cursor:pointer;line-height:1}
+  .price-list{list-style:none;padding-left:0;margin:0}
+  .price-list li{padding:10px 0;border-bottom:1px dashed #e5e7eb}
+  .pill{display:inline-block;border:1px solid #e5e7eb;border-radius:20px;padding:4px 10px;font-size:.9rem;margin:4px 6px 0 0;background:#fafafa}
+  form input, form textarea, form select{width:100%;padding:12px;border:1px solid #dadada;border-radius:10px;margin:8px 0 14px;font-size:1rem}
+  form button{width:100%}
+  .hint{font-size:.9rem;color:#6b7280}
+  .cta-row{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:14px}
+  .wa{position:fixed;right:18px;bottom:18px;width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#25D366;color:#fff;font-size:28px;text-decoration:none;box-shadow:var(--shadow);z-index:1100}
+  .wa:hover{filter:brightness(.95)}
+  @media (max-width:640px){
+    header h1{font-size:1.6rem}
+    .btn{width:100%;margin:6px 0}
+    .btn + .btn{margin-left:0}
+    section{margin:18px 10px}
+  }
+</style>
+
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XXXXXXXXXX'); // <-- замените на свой ID
+</script>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="#services">Services</a>
+    <a href="#avis">Avis clients</a>
+    <a href="#zone">Zone d’intervention</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<header>
+  <div class="header-inner">
+    <h1>Votre Homme à Tout Faire – Île-de-France</h1>
+    <p>Interventions rapides et soignées. Devis gratuit, prix transparents.</p>
+    <p>📧 isotron44@gmail.com • 📞 07 66 99 70 54</p>
+    <div class="cta-row">
+      <button class="btn" onclick="openModal('tarifsModal')">Voir les tarifs</button>
+      <button class="btn success" onclick="openModal('devisModal')">Obtenez un devis gratuit</button>
+      <button class="btn dark" onclick="openModal('specialModal')">Demandes spéciales</button>
+    </div>
+  </div>
+</header>
+
+<section id="services">
+  <h2>Services proposés</h2>
+  <div class="grid">
+    <div class="card">
+      <img src="menus.png" alt="Montage de meubles">
+      <h3>Montage de meubles</h3>
+      <p>Assemblage propre et sécurisé (IKEA, Conforama, But, etc.).</p>
+      <button class="btn" onclick="openModal('tarifsModal')">Voir tarifs</button>
+    </div>
+    <div class="card">
+      <img src="plomb.png" alt="Petite plomberie">
+      <h3>Petite plomberie</h3>
+      <p>Robinet, siphon, flexible, petit dépannage sans gros travaux.</p>
+      <button class="btn" onclick="openModal('tarifsModal')">Voir tarifs</button>
+    </div>
+    <div class="card">
+      <img src="elec.png" alt="Électricité">
+      <h3>Électricité (petits travaux)</h3>
+      <p>Prises, interrupteurs, luminaires, dépannages simples.</p>
+      <button class="btn" onclick="openModal('tarifsModal')">Voir tarifs</button>
+    </div>
+  </div>
+  <div class="center" style="margin-top:14px">
+    <span class="pill">Devis gratuit</span>
+    <span class="pill">Intervention soirs & week-end</span>
+    <span class="pill">Facture / Paiement CB, virement</span>
+  </div>
+</section>
+
+<!-- Avis Clients -->
+<section id="avis">
+  <h2>Avis de nos clients</h2>
+  <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px">
+    <div class="card" style="text-align:left">
+      <div class="stars" style="font-size:1.1rem;color:#f5a623">★★★★★</div>
+      <p>Intervention rapide et propre. Montage d’armoire IKEA en 1h30, parfait.</p>
+      <div style="font-weight:bold;">— Marc, Nanterre</div>
+    </div>
+    <div class="card" style="text-align:left">
+      <div class="stars" style="font-size:1.1rem;color:#f5a623">★★★★★</div>
+      <p>Changement de robinet + pose d’applique. Très ponctuel, prix clair.</p>
+      <div style="font-weight:bold;">— Sophie, Boulogne</div>
+    </div>
+    <div class="card" style="text-align:left">
+      <div class="stars" style="font-size:1.1rem;color:#f5a623">★★★★★</div>
+      <p>Dépannage électrique le soir, super réactif. Recommande !</p>
+      <div style="font-weight:bold;">— Karim, Paris 15e</div>
+    </div>
+  </div>
+</section>
+
+<section id="zone">
+  <h2>Zone d’intervention</h2>
+  <p>📍 Île-de-France (toute la région : Paris, Hauts-de-Seine, Seine-Saint-Denis, Val-de-Marne, Yvelines, Essonne, Val-d’Oise, Seine-et-Marne).</p>
+  <div class="map">
+    <iframe src="https://www.google.com/maps?q=Île-de-France&output=embed" width="100%" height="320" style="border:0" loading="lazy" allowfullscreen=""></iframe>
+  </div>
+</section>
+
+<section id="contact">
+  <h2>Contact</h2>
+  <p class="center">📧 <a href="mailto:isotron44@gmail.com">isotron44@gmail.com</a> • 📞 <a href="tel:+33766997054">07 66 99 70 54</a></p>
+  <form action="https://formspree.io/f/mblaervj" method="POST">
+    <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr))">
+      <input type="text" name="name" placeholder="Nom complet" required/>
+      <input type="email" name="email" placeholder="Email" required/>
+      <input type="tel" name="phone" placeholder="Téléphone" required/>
+      <select name="service" required>
+        <option value="" selected disabled>Type de service</option>
+        <option>Montage de meubles</option>
+        <option>Petite plomberie</option>
+        <option>Électricité (petits travaux)</option>
+        <option>Autre</option>
+      </select>
+    </div>
+    <textarea name="message" rows="6" placeholder="Décrivez votre besoin (lieu, disponibilité, détails)"></textarea>
+    <button class="btn success" type="submit">Envoyer ma demande</button>
+    <input type="hidden" name="_next" value="merci.html">
+  </form>
+</section>
+
+<footer>
+  <p>© 2025 Votre Homme à Tout Faire – Île-de-France • Tous droits réservés</p>
+</footer>
+
+<a class="wa" href="https://wa.me/33766997054" target="_blank" aria-label="WhatsApp">💬</a>
+
+<!-- Modal: Tarifs -->
+<div id="tarifsModal" class="modal">
+  <div class="modal-box">
+    <div class="modal-head">
+      <h3>Tarifs de base (indicatifs)</h3>
+      <button class="close" onclick="closeModal('tarifsModal')">×</button>
+    </div>
+    <h4>Montage de meubles</h4>
+    <ul class="price-list">
+      <li>🪑 Petit meuble (chaise, table basse) : 30–40 €</li>
+      <li>🗄️ Meuble moyen (commode, lit, bureau) : 40–60 €</li>
+      <li>🚪 Armoire IKEA (moyenne) : 60–80 €</li>
+    </ul>
+    <h4>Petite plomberie</h4>
+    <ul class="price-list">
+      <li>🚰 Flexible / pommeau : 30–40 €</li>
+      <li>🧰 Siphon / robinet : 50–80 €</li>
+      <li>💧 Petite fuite : 50–80 €</li>
+    </ul>
+    <h4>Électricité (petits travaux)</h4>
+    <ul class="price-list">
+      <li>🔌 Prise / interrupteur : 40–60 €</li>
+      <li>💡 Luminaire / applique : 40–70 €</li>
+      <li>⚡ Dépannage simple : 60–90 €</li>
+    </ul>
+    <p class="hint">* Prix indicatifs. Devis personnalisé fourni avant chaque intervention.</p>
+  </div>
+</div>
+
+<!-- Modal: Devis gratuit -->
+<div id="devisModal" class="modal">
+  <div class="modal-box">
+    <div class="modal-head">
+      <h3>Obtenez un devis gratuit</h3>
+      <button class="close" onclick="closeModal('devisModal')">×</button>
+    </div>
+    <form action="https://formspree.io/f/mblaervj" method="POST">
+      <input type="text" name="name" placeholder="Nom complet" required/>
+      <input type="email" name="email" placeholder="Email" required/>
+      <input type="tel" name="phone" placeholder="Téléphone" required/>
+      <textarea name="message" rows="6" placeholder="Décrivez votre besoin" required></textarea>
+      <button class="btn success" type="submit">Envoyer ma demande</button>
+      <input type="hidden" name="_next" value="merci.html">
+    </form>
+  </div>
+</div>
+
+<!-- Modal: Demandes spéciales -->
+<div id="specialModal" class="modal">
+  <div class="modal-box">
+    <div class="modal-head">
+      <h3>Demandes spéciales</h3>
+      <button class="close" onclick="closeModal('specialModal')">×</button>
+    </div>
+    <p>
+      Travaux <strong>complexes</strong> ou <strong>volumineux</strong> (plusieurs pièces, combinaisons plomberie + électricité, aménagement complet).
+      Un RDV sur place est recommandé pour établir un devis détaillé et fiable.
+    </p>
+    <form action="https://formspree.io/f/mblaervj" method="POST">
+      <input type="text" name="name" placeholder="Nom complet" required/>
+      <input type="email" name="email" placeholder="Email" required/>
+      <input type="tel" name="phone" placeholder="Téléphone" required/>
+      <input type="text" name="project" placeholder="Sujet / Type de projet" required/>
+      <textarea name="message" rows="6" placeholder="Détaillez le volume, contraintes, délai souhaité" required></textarea>
+      <button class="btn dark" type="submit">Envoyer ma demande spéciale</button>
+      <input type="hidden" name="_next" value="merci.html">
+    </form>
+  </div>
+</div>
+
+<script>
+  function openModal(id){document.getElementById(id).classList.add('open')}
+  function closeModal(id){document.getElementById(id).classList.remove('open')}
+  function switchTo(openId, closeId){ closeModal(closeId); openModal(openId); }
+  window.onclick=function(e){
+    document.querySelectorAll('.modal.open').forEach(m=>{
+      if(e.target===m) closeModal(m.id);
+    });
+  }
+  window.addEventListener('keydown', e=>{
+    if(e.key==='Escape'){
+      document.querySelectorAll('.modal.open').forEach(m=>closeModal(m.id));
+    }
+  });
+  (function(){
+    document.querySelectorAll('a[href^="tel:"]').forEach(a=>{
+      a.addEventListener('click', ()=>{ if(typeof gtag==='function'){ gtag('event','click_phone'); } });
+    });
+    document.querySelectorAll('a[href^="mailto:"]').forEach(a=>{
+      a.addEventListener('click', ()=>{ if(typeof gtag==='function'){ gtag('event','click_email'); } });
+    });
+    document.querySelectorAll('a[href*="wa.me"]').forEach(a=>{
+      a.addEventListener('click', ()=>{ if(typeof gtag==='function'){ gtag('event','click_whatsapp'); } });
+    });
+    document.querySelectorAll('form[action*="formspree.io/f/mblaervj"]').forEach(f=>{
+      f.addEventListener('submit', ()=>{ if(typeof gtag==='function'){ gtag('event','form_submit'); } });
+    });
+  })();
+</script>
+
+</body>
+</html>
