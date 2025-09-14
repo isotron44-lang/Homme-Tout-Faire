@@ -1,13 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-5HKWBZHH');</script>
-<!-- End Google Tag Manager -->
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Votre Homme à Tout Faire – Île-de-France</title>
@@ -69,20 +62,22 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   }
 </style>
 
-<!-- Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<!-- Google Tag Manager -->
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-XXXXXXXXXX'); // <-- замените на свой ID
+  (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});
+    var f=d.getElementsByTagName(s)[0], j=d.createElement(s), dl=l!='dataLayer'?'&l='+l:'';
+    j.async=true; j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
+    f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-5HKWBZHH');
 </script>
+<!-- End Google Tag Manager -->
 </head>
 <body>
+
 <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5HKWBZHH"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5HKWBZHH" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
+
 <nav>
   <div class="nav-inner">
     <a href="#services">Services</a>
@@ -276,22 +271,26 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       document.querySelectorAll('.modal.open').forEach(m=>closeModal(m.id));
     }
   });
+
+  // Отправка событий в GTM (dataLayer)
   (function(){
+    window.dataLayer = window.dataLayer || [];
+    const fire = (name)=>{ try{ dataLayer.push({event:name}); }catch(e){} };
+
     document.querySelectorAll('a[href^="tel:"]').forEach(a=>{
-      a.addEventListener('click', ()=>{ if(typeof gtag==='function'){ gtag('event','click_phone'); } });
+      a.addEventListener('click', ()=> fire('click_phone'));
     });
     document.querySelectorAll('a[href^="mailto:"]').forEach(a=>{
-      a.addEventListener('click', ()=>{ if(typeof gtag==='function'){ gtag('event','click_email'); } });
+      a.addEventListener('click', ()=> fire('click_email'));
     });
     document.querySelectorAll('a[href*="wa.me"]').forEach(a=>{
-      a.addEventListener('click', ()=>{ if(typeof gtag==='function'){ gtag('event','click_whatsapp'); } });
+      a.addEventListener('click', ()=> fire('click_whatsapp'));
     });
     document.querySelectorAll('form[action*="formspree.io/f/mblaervj"]').forEach(f=>{
-      f.addEventListener('submit', ()=>{ if(typeof gtag==='function'){ gtag('event','form_submit'); } });
+      f.addEventListener('submit', ()=> fire('form_submit'));
     });
   })();
 </script>
 
 </body>
 </html>
-
