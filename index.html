@@ -54,6 +54,9 @@
   .cta-row{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:14px}
   .wa{position:fixed;right:18px;bottom:18px;width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#25D366;color:#fff;font-size:28px;text-decoration:none;box-shadow:var(--shadow);z-index:1100}
   .wa:hover{filter:brightness(.95)}
+  /* Micro-animations */
+  .fade{opacity:0;transform:translateY(20px);transition:all .6s ease-out}
+  .fade.visible{opacity:1;transform:none}
   @media (max-width:640px){
     header h1{font-size:1.6rem}
     .btn{width:100%;margin:6px 0}
@@ -129,21 +132,40 @@
   </div>
 </section>
 
+<!-- Pourquoi nous -->
+<section id="why">
+  <h2>Pourquoi nous choisir ?</h2>
+  <div class="grid">
+    <div class="card fade">
+      <h3>✅ Devis gratuit</h3>
+      <p>Estimation claire et rapide avant chaque intervention.</p>
+    </div>
+    <div class="card fade">
+      <h3>⚡ Intervention rapide</h3>
+      <p>Disponible soirs & week-end, prise de RDV flexible.</p>
+    </div>
+    <div class="card fade">
+      <h3>💳 Paiement facile</h3>
+      <p>Facture, paiement CB ou virement acceptés.</p>
+    </div>
+  </div>
+</section>
+
 <!-- Avis Clients -->
 <section id="avis">
   <h2>Avis de nos clients</h2>
   <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px">
-    <div class="card" style="text-align:left">
+    <div class="card fade" style="text-align:left">
       <div class="stars" style="font-size:1.1rem;color:#f5a623">★★★★★</div>
       <p>Intervention rapide et propre. Montage d’armoire IKEA en 1h30, parfait.</p>
       <div style="font-weight:bold;">— Marc, Nanterre</div>
     </div>
-    <div class="card" style="text-align:left">
+    <div class="card fade" style="text-align:left">
       <div class="stars" style="font-size:1.1rem;color:#f5a623">★★★★★</div>
       <p>Changement de robinet + pose d’applique. Très ponctuel, prix clair.</p>
       <div style="font-weight:bold;">— Sophie, Boulogne</div>
     </div>
-    <div class="card" style="text-align:left">
+    <div class="card fade" style="text-align:left">
       <div class="stars" style="font-size:1.1rem;color:#f5a623">★★★★★</div>
       <p>Dépannage électrique le soir, super réactif. Recommande !</p>
       <div style="font-weight:bold;">— Karim, Paris 15e</div>
@@ -179,6 +201,25 @@
     <button class="btn success" type="submit">Envoyer ma demande</button>
     <input type="hidden" name="_next" value="merci.html">
   </form>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <h2>Questions fréquentes</h2>
+  <div class="grid">
+    <div class="card fade" style="text-align:left">
+      <h3>❓ Quels sont vos tarifs ?</h3>
+      <p>Les prix varient selon le type de travaux (voir la section Tarifs). Un devis gratuit est fourni avant chaque intervention.</p>
+    </div>
+    <div class="card fade" style="text-align:left">
+      <h3>❓ Quelle est votre zone d’intervention ?</h3>
+      <p>Nous intervenons dans toute l’Île-de-France : Paris, Hauts-de-Seine, Yvelines, Val-de-Marne, etc.</p>
+    </div>
+    <div class="card fade" style="text-align:left">
+      <h3>❓ Comment demander un devis ?</h3>
+      <p>Directement via le formulaire de contact, WhatsApp ou téléphone. Réponse sous 24h.</p>
+    </div>
+  </div>
 </section>
 
 <footer>
@@ -290,6 +331,20 @@
       f.addEventListener('submit', ()=> fire('form_submit'));
     });
   })();
+
+  // Fade-in on scroll (микро-анимации)
+  document.addEventListener("DOMContentLoaded", ()=>{
+    const faders=document.querySelectorAll('.fade');
+    const obs=new IntersectionObserver((entries,observer)=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    },{threshold:0.1});
+    faders.forEach(el=>obs.observe(el));
+  });
 </script>
 
 </body>
